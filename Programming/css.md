@@ -3,7 +3,7 @@
 ## Inheritance Shortcuts
 
 ```css
-/* Use body tag to set styles for most tags -- Saves re-writing code. */
+/* Use body tag to set styles for most tags -- Saves re-writing code */
 body {
   font-family: "Courier New", Courier, monospace;
   font-size: 2em;
@@ -28,7 +28,7 @@ body {
   box-sizing: inherit;
 }
 
-html {
+* {
   box-sizing: border-box;
 }
 ```
@@ -39,27 +39,41 @@ html {
 
 - By default CSS is responsive (width and height)
 - Set values can take **responsive** away
-- Elements are defaulted to a `width of 100% of parent element`
+- Elements are defaulted to a _width of 100% of parent element_
 - Avoid giving height if possible / rather set padding as relative unit `em`
+- Use `max-width: 750px;` or `width: 80%` to avoid stretching content at bigger
+  screens
+
+### **Breakpoints**
+
+- Work out breakpoints when the layout starts breaking
+- Keep breakpoints to minimal
 
 ### **Relative Units**
 
 - **`em`** Compounds on top of parent element's font-size
   - Use when dealing with margins and padding
-  - **`em`** For margin/padding looks at the font-size of that element not the parent element
-- **`rem`** Does not compound, looks at font-size in **`::root`** element
-  - **`rem`** For margin/padding looks at the font-size in the **`::root`** element
-- To have consistent spacing between elements, use **`rem`** over **`em`**
-- **`em`** and **`rem`** are more effective when working with media queries
+  - **`em`** For margin/padding looks at the font-size of that element not
+    the parent element
+- **`rem`** Does not compound, looks at font-size in `::root` element
+  - **`rem`** For margin/padding looks at the font-size in the `::root` element
+- To have consistent spacing between elements, use `rem` over `em`
+- **`em` and `rem`** are more effective when working with media queries
 
 ### **View-port Units**
 
-- **`vh`** Specifies the % of the view-port height **`100vh`** is `100%` of the view-port height
-- **`vw`** Specifies the % of the view-port width **`80vw`** is `80%` of the view-port width
-  - **`vh`** and **`vw`** can be very effective on *titles (h tags)* for responsive designs (as view-port changes so does title tags)
-- **`vmin`** Takes the smallest(smaller) value out of the two units (view-port height vs view-port width)
-- **`vmax`** Takes the largest(taller) value out of the two two units (view-port height vs view-port width)
-- **`vmin`** and **`vmax`** can benefit in the same way and can prevent bloating at certain device sizes
+- **`vh`** Specifies the % of the view-port height `100vh` is `100%` of
+  the view-port height
+- **`vw`** Specifies the % of the view-port width `80vw` is `80%` of
+  the view-port width
+  - **`vh` and `vw`** can be very effective on titles (h tags) for
+    responsive designs (as view-port changes so does title tags)
+- **`vmin`** Takes the smallest(smaller) value out of the two units
+  (view-port height vs view-port width)
+- **`vmax`** Takes the largest(taller) value out of the two two units
+  (view-port height vs view-port width)
+- **`vmin` and `vmax`** can benefit in the same way and can prevent
+  bloating at certain device sizes
 
 ## **CSS Grid**
 
@@ -80,15 +94,6 @@ html {
     grid-column-start: 4;
     grid-row: 1/3;
   }
-}
-v
-
-/* ZTM */
-.container {
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-template-rows: 1fr;
 }
 ```
 
@@ -159,22 +164,21 @@ max-width: 200px, 200px or smaller target
 }
 ```
 
-### **Breakpoints**
-
-- Work out breakpoints when the layout starts breaking
-- Keep breakpoints to minimal
-
 ### **View-port meta tag**
 
-```css
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<!-- Ensure your website is going to be responsive the way you want it to be. -->
+```html
+<!--Disabling Viewport Zomming-->
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+/>
 ```
 
 ### **Custom Properties**
 
 ```css
-/* Have to defined inside selector */ /* If in root, they will be Global Properties */ /* --{name}: value */
+/* Have to defined inside selector */ /* If in root, they will be Global
+Properties */ /* --{name}: value */
 :root {
   --dark: #00bd9d;
   --light: #88bd7d;
