@@ -21,8 +21,7 @@ html { box-sizing: border-box; }
 ## **Custom Properties**
 
 ```
-/* Have to defined inside selector */ /* If in root, they will be Global
-Properties */ /* --{name}: value */
+/* Define variables for CSS colors */
 :root {
   --darkBG: #1e1e2e;
   --darkFG: #ff5747;
@@ -36,18 +35,23 @@ body {
 
 ## **Responsive CSS / Mobile First Design**
 
-### **Percentages and avoiding heights**
+### **View-port Meta Tag**
+
+```
+<!--Disabling Viewport Zomming-->
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+/>
+```
+
+### **CSS Tricks**
 
 - By default CSS is responsive (width and height)
 - Set values can take **responsive** nature away from CSS
 - Elements are defaulted to a _width of 100% of parent element_
 - Avoid assigning height if possible / rather set padding as relative unit `em`
 - For larger screens use `max-width: 750px;` or `width: 80%` to avoid stretching
-
-### **Breakpoints**
-
-- Work out breakpoints when the layout starts breaking
-- Keep breakpoints to minimal
 
 ### **Relative Units**
 
@@ -60,7 +64,7 @@ body {
 - To have consistent spacing between elements, use `rem` over `em`
 - **`em` and `rem`** are more effective when working with `media queries`
 
-### **View-port Units**
+### **View-Port Units**
 
 - **`vh`** Specifies the % of the view-port height `100vh` is `100%` of
   the view-port height
@@ -75,6 +79,11 @@ body {
 
 ## **Media Queries**
 
+### **Breakpoints**
+
+- Work out breakpoints when the layout starts breaking
+- Keep breakpoints to minimal
+
 ```
 /* can set media types, if left blank, targets all media types */
 min-width: 600px , 600px or bigger target
@@ -87,16 +96,6 @@ max-width: 200px, 200px or smaller target
 @media (min-width: 600px) {
   background-color: steelblue;
 }
-```
-
-### **View-port meta tag**
-
-```
-<!--Disabling Viewport Zomming-->
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
-/>
 ```
 
 ## **CSS One Liners**
