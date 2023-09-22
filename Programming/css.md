@@ -1,9 +1,9 @@
 # CSS
 
-## Inheritance Shortcuts
+## CSS Inheritance Templates
 
-```css
-/* Use body tag to set styles for most tags -- Saves re-writing code */
+```
+/* CSS body default */
 body {
   font-family: "Courier New", Courier, monospace;
   font-size: 2em;
@@ -11,25 +11,26 @@ body {
 }
 ```
 
-```css
-/* Box Model default behaviour is set to content-box -- Set to border-box */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+```
+/* CSS box-sizing  */
+html { box-sizing: border-box; }
+
+*:not(img), *:before, *:after { box-sizing: inherit; }
 ```
 
-```css
-/* Inherit code -- saves re-writing code */
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
+## **Custom Properties**
+
+```
+/* Have to defined inside selector */ /* If in root, they will be Global
+Properties */ /* --{name}: value */
+:root {
+  --darkBG: #1e1e2e;
+  --darkFG: #ff5747;
 }
 
-* {
-  box-sizing: border-box;
+body {
+  background-color: var(--darkBG);
+  color: var(--darkFG);
 }
 ```
 
@@ -38,11 +39,10 @@ body {
 ### **Percentages and avoiding heights**
 
 - By default CSS is responsive (width and height)
-- Set values can take **responsive** away
+- Set values can take **responsive** nature away from CSS
 - Elements are defaulted to a _width of 100% of parent element_
-- Avoid giving height if possible / rather set padding as relative unit `em`
-- Use `max-width: 750px;` or `width: 80%` to avoid stretching content at bigger
-  screens
+- Avoid assigning height if possible / rather set padding as relative unit `em`
+- For larger screens use `max-width: 750px;` or `width: 80%` to avoid stretching
 
 ### **Breakpoints**
 
@@ -56,9 +56,9 @@ body {
   - **`em`** For margin/padding looks at the font-size of that element not
     the parent element
 - **`rem`** Does not compound, looks at font-size in `::root` element
-  - **`rem`** For margin/padding looks at the font-size in the `::root` element
+  - **`rem`** For `margin` or `padding` looks at the `font-size` in the `::root` element
 - To have consistent spacing between elements, use `rem` over `em`
-- **`em` and `rem`** are more effective when working with media queries
+- **`em` and `rem`** are more effective when working with `media queries`
 
 ### **View-port Units**
 
@@ -66,91 +66,16 @@ body {
   the view-port height
 - **`vw`** Specifies the % of the view-port width `80vw` is `80%` of
   the view-port width
-  - **`vh` and `vw`** can be very effective on titles (h tags) for
-    responsive designs (as view-port changes so does title tags)
-- **`vmin`** Takes the smallest(smaller) value out of the two units
-  (view-port height vs view-port width)
-- **`vmax`** Takes the largest(taller) value out of the two two units
-  (view-port height vs view-port width)
+  - **`vh` and `vw`** can be very effective on titles `h tags` for responsive designs as the view-port changes so does title tags
+- **`vmin`** Takes the smallest value out of the two units
+  `(view-port height vs view-port width)`
+- **`vmax`** Takes the largest value out of the two two units ``(view-port height vs view-port width)`
 - **`vmin` and `vmax`** can benefit in the same way and can prevent
   bloating at certain device sizes
 
-## **CSS Grid**
-
-```css
-.testimonial-grid {
-  display: grid;
-  gap: 1.5rem;
-}
-
-@media (min-width: 50em) {
-  .grid-col-span-2 {
-    grid-column: span 2;
-  }
-  .testimonial-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-  .testimonial:last-child {
-    grid-column-start: 4;
-    grid-row: 1/3;
-  }
-}
-```
-
-## **Flex Box**
-
-```css
-.containers {
-  display: flex;
-  /* display: flex => flex container */
-  flex-direction: row;
-  /* By default set to flex-direction: row */
-  /* This div becomes a row, all direct children of this row becomes columns */
-  gap: 100px;
-  /* Creates a space of 100px between each Flex-items */
-  justify-content: flex-start;
-  /* Justifies space between flex items */
-  flex-wrap: wrap;
-  /* By Default set to nowrap,switching to wrap, 
-allows flex-items to no spill over */
-  flex-flow: row wrap;
-  /* Combines flex direction and wrap (shorthand) */
-}
-.flexbox-items {
-  /* These are now flex items */
-  /* Flex items by default try to shrink to the smallest size they can be */
-  flex-grow: 1;
-  /* When more than 250px, Grows to take all available space */
-  flex-shrink: 1;
-  /* When less than 250px, Shrinks to smallest size it can be */
-  flex-basis: 250px
-    /* If it has available space how muc room does it want to take up, 
-I want to be 250px */ flex 1 1 250px;
-  /* Shorthand for all three */
-  order: 1;
-  /* Controls the order, good for re-arranging items (mobile) */
-}
-
-.col + .col {
-  /* Combinator > selecting adjustent sibling */
-  margin-left: 30px;
-}
-
-.hero__img {
-  align-self: flex-start;
-  /* align vertically from the top */
-}
-
-.img {
-  max-width: 100%;
-  /* Images will never increase above original size, 
-but will shrink to fit page */
-}
-```
-
 ## **Media Queries**
 
-```css
+```
 /* can set media types, if left blank, targets all media types */
 min-width: 600px , 600px or bigger target
 max-width: 200px, 200px or smaller target
@@ -166,7 +91,7 @@ max-width: 200px, 200px or smaller target
 
 ### **View-port meta tag**
 
-```html
+```
 <!--Disabling Viewport Zomming-->
 <meta
   name="viewport"
@@ -174,25 +99,9 @@ max-width: 200px, 200px or smaller target
 />
 ```
 
-### **Custom Properties**
-
-```css
-/* Have to defined inside selector */ /* If in root, they will be Global
-Properties */ /* --{name}: value */
-:root {
-  --dark: #00bd9d;
-  --light: #88bd7d;
-}
-
-body {
-  /*  */
-  color: var(--dark);
-}
-```
-
 ## **CSS One Liners**
 
-```css
+```
 /* Sets Text Vertical */
 writing-mode: vertical-1r;
 
